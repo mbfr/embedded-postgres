@@ -3,22 +3,24 @@ package embeddedpostgres
 import (
 	"io"
 	"os"
+	"syscall"
 	"time"
 )
 
 // Config maintains the runtime configuration for the Postgres process to be created.
 type Config struct {
-	version      PostgresVersion
-	port         uint32
-	database     string
-	username     string
-	password     string
-	runtimePath  string
-	dataPath     string
-	binariesPath string
-	locale       string
-	startTimeout time.Duration
-	logger       io.Writer
+	version          PostgresVersion
+	port             uint32
+	database         string
+	username         string
+	password         string
+	runtimePath      string
+	dataPath         string
+	binariesPath     string
+	locale           string
+	startTimeout     time.Duration
+	logger           io.Writer
+	postgresProcAttr *syscall.SysProcAttr
 }
 
 // DefaultConfig provides a default set of configuration to be used "as is" or modified using the provided builders.
