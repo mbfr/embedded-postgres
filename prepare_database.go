@@ -58,7 +58,7 @@ func defaultInitDatabase(procAttr *syscall.SysProcAttr, inDir string, binaryExtr
 
 func createPasswordFile(runtimePath, password string) (string, error) {
 	passwordFileLocation := filepath.Join(runtimePath, "pwfile")
-	if err := ioutil.WriteFile(passwordFileLocation, []byte(password), 0600); err != nil {
+	if err := ioutil.WriteFile(passwordFileLocation, []byte(password), 0o444); err != nil {
 		return "", fmt.Errorf("unable to write password file to %s", passwordFileLocation)
 	}
 
